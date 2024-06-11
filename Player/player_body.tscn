@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ood7sstdwddf"]
+
+[ext_resource type="Script" path="res://Player/PlayerBody.gd" id="1_0iefj"]
+[ext_resource type="Texture2D" uid="uid://dmxg447ha5e2j" path="res://Player/Player.png" id="1_ythhi"]
+[ext_resource type="Texture2D" uid="uid://c3in8yngjadc6" path="res://Turbo/TurboBar.png" id="2_484yl"]
+[ext_resource type="Script" path="res://Turbo/TurboBar.gd" id="3_uee1v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a6jac"]
+radius = 24.6797
+
+[node name="PlayerBody" type="RigidBody2D" groups=["Player", "Players"]]
+z_index = 1
+mass = 2.0
+gravity_scale = 0.0
+linear_damp = 3.0
+script = ExtResource("1_0iefj")
+walkSpeed = 1000
+turboSpeed = 2000
+hyperTurboSpeed = 4000.0
+turboRemaining = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a6jac")
+
+[node name="TurboBar" type="TextureProgressBar" parent="."]
+offset_right = 400.0
+offset_bottom = 400.0
+scale = Vector2(0.13, 0.13)
+pivot_offset = Vector2(-29.55, -29.64)
+max_value = 500.0
+value = 500.0
+fill_mode = 4
+texture_progress = ExtResource("2_484yl")
+script = ExtResource("3_uee1v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_ythhi")

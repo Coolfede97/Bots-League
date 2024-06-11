@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://d4gftjknu7fad"]
+
+[ext_resource type="PackedScene" uid="uid://cevmq8gdvt3ws" path="res://Bots/2/bot2.tscn" id="1_7avor"]
+[ext_resource type="PackedScene" uid="uid://c63hwckc23hbu" path="res://Ball/SoccerBall.tscn" id="2_hrs1u"]
+[ext_resource type="PackedScene" uid="uid://ood7sstdwddf" path="res://Player/player_body.tscn" id="3_jjqup"]
+[ext_resource type="Texture2D" uid="uid://bklplqlvb72vi" path="res://icon.svg" id="4_07qiy"]
+[ext_resource type="Script" path="res://Walls/TestWalls.gd" id="5_00ydg"]
+[ext_resource type="Texture2D" uid="uid://dmd2yye3f0k80" path="res://Walls/Walls.png" id="6_s3bf4"]
+[ext_resource type="PackedScene" uid="uid://djjkgw58k6s86" path="res://Turbo/turbo.tscn" id="7_p83kq"]
+[ext_resource type="PackedScene" uid="uid://c8bp4tkhsh5ff" path="res://Turbo/turbo_spawner.tscn" id="8_topk2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ilw6e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mgrld"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv385"]
+
+[node name="Pruebas" type="Node2D"]
+
+[node name="Bot2" parent="." node_paths=PackedStringArray("ball", "upCorner", "downCorner") groups=["Players"] instance=ExtResource("1_7avor")]
+position = Vector2(1088.88, 319.113)
+isOfensive = true
+walkSpeed = 60000
+turboSpeed = 120000
+hyperTurboSpeed = 240000.0
+turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
+ball = NodePath("../Ball")
+upCorner = NodePath("../UpCorner")
+downCorner = NodePath("../DownCorner")
+DTBBS = 152.813
+goalCenterVector = Vector2(1088.88, 301.295)
+halfPitch = 585.11
+
+[node name="Calculator" parent="Bot2" index="5" node_paths=PackedStringArray("ball", "bot")]
+ball = NodePath("../../Ball")
+bot = NodePath("..")
+walkSpeed = 60000
+turboSpeed = 120000
+hyperTurboSpeed = 240000.0
+turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
+
+[node name="Ball" parent="." instance=ExtResource("2_hrs1u")]
+position = Vector2(191.934, 471.278)
+PGP = -100000.0
+BGP = 100000.0
+
+[node name="PlayerBody" parent="." instance=ExtResource("3_jjqup")]
+position = Vector2(132.709, 518.159)
+physics_material_override = SubResource("PhysicsMaterial_ilw6e")
+walkSpeed = 60000
+turboSpeed = 120000
+hyperTurboSpeed = 240000.0
+turboRemaining = 1e+09
+positionDestination = Vector2(285.522, 0)
+
+[node name="UpCorner" type="Node2D" parent="."]
+position = Vector2(103.314, 183.948)
+scale = Vector2(0.140001, 0.150665)
+
+[node name="Sprite2D" type="Sprite2D" parent="UpCorner"]
+texture = ExtResource("4_07qiy")
+
+[node name="DownCorner" type="Node2D" parent="."]
+position = Vector2(105.833, 367.897)
+scale = Vector2(-0.129418, 0.131712)
+
+[node name="Sprite2D" type="Sprite2D" parent="DownCorner"]
+texture = ExtResource("4_07qiy")
+
+[node name="WallContainer" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="WallContainer"]
+z_index = 3
+position = Vector2(571, 4)
+scale = Vector2(64.4637, 1)
+physics_material_override = SubResource("PhysicsMaterial_mgrld")
+script = ExtResource("5_00ydg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallContainer/Wall"]
+shape = SubResource("RectangleShape2D_wv385")
+
+[node name="Sprite2D" type="Sprite2D" parent="WallContainer/Wall/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("6_s3bf4")
+
+[node name="Wall2" type="StaticBody2D" parent="WallContainer"]
+z_index = 3
+position = Vector2(597, 652)
+scale = Vector2(64.4637, 1)
+physics_material_override = SubResource("PhysicsMaterial_mgrld")
+script = ExtResource("5_00ydg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallContainer/Wall2"]
+shape = SubResource("RectangleShape2D_wv385")
+
+[node name="Sprite2D" type="Sprite2D" parent="WallContainer/Wall2/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("6_s3bf4")
+
+[node name="Wall3" type="StaticBody2D" parent="WallContainer"]
+z_index = 3
+position = Vector2(-71.2551, 305.134)
+scale = Vector2(8.5437, 43.28)
+physics_material_override = SubResource("PhysicsMaterial_mgrld")
+script = ExtResource("5_00ydg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallContainer/Wall3"]
+shape = SubResource("RectangleShape2D_wv385")
+
+[node name="Sprite2D" type="Sprite2D" parent="WallContainer/Wall3/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("6_s3bf4")
+
+[node name="Wall4" type="StaticBody2D" parent="WallContainer"]
+z_index = 3
+position = Vector2(1221.82, 282.685)
+scale = Vector2(8.5437, 43.28)
+physics_material_override = SubResource("PhysicsMaterial_mgrld")
+script = ExtResource("5_00ydg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallContainer/Wall4"]
+shape = SubResource("RectangleShape2D_wv385")
+
+[node name="Sprite2D" type="Sprite2D" parent="WallContainer/Wall4/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("6_s3bf4")
+
+[node name="TurboSpawner" parent="." instance=ExtResource("8_topk2")]
+
+[node name="Turbo" parent="TurboSpawner" instance=ExtResource("7_p83kq")]
+position = Vector2(1088.88, 101.295)
+
+[node name="Turbo2" parent="TurboSpawner" instance=ExtResource("7_p83kq")]
+position = Vector2(1088.88, 560)
+
+[editable path="Bot2"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c63hwckc23hbu"]
+
+[ext_resource type="Texture2D" uid="uid://cuqqxfiuiy7jb" path="res://Ball/Ball.png" id="1_cy63v"]
+[ext_resource type="Script" path="res://Ball/SoccerBall.gd" id="1_kn8de"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_34wut"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p82q5"]
+radius = 17.064
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0e4l"]
+radius = 17.2188
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_34wut")
+gravity_scale = 0.0
+script = ExtResource("1_kn8de")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0872443, 0.0872443)
+texture = ExtResource("1_cy63v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p82q5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_a0e4l")
+debug_color = Color(0.964706, 0, 0.498039, 0.419608)
+
+[node name="BallRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+
+[node name="DownRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 900)
+
+[node name="UpRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, -900)
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-1500, 0)
+
+[node name="RightRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(1500, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

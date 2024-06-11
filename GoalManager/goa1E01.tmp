@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bun3km0gw3hky"]
+
+[ext_resource type="Script" path="res://GoalManager/GoalManager.gd" id="1_8ceyc"]
+[ext_resource type="PackedScene" uid="uid://bitscnrp4e4ir" path="res://GoalManager/BallExplosion.tscn" id="2_qsycp"]
+
+[node name="GoalManager" type="Node2D"]
+script = ExtResource("1_8ceyc")
+ballExplosion = ExtResource("2_qsycp")

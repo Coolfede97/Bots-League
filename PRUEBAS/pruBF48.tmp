@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4gftjknu7fad"]
+
+[ext_resource type="PackedScene" uid="uid://cevmq8gdvt3ws" path="res://Bots/2/bot2.tscn" id="1_7avor"]
+[ext_resource type="PackedScene" uid="uid://c63hwckc23hbu" path="res://Ball/SoccerBall.tscn" id="2_hrs1u"]
+[ext_resource type="PackedScene" uid="uid://ood7sstdwddf" path="res://Player/player_body.tscn" id="3_jjqup"]
+[ext_resource type="Texture2D" uid="uid://bklplqlvb72vi" path="res://icon.svg" id="4_07qiy"]
+
+[node name="Pruebas" type="Node2D"]
+
+[node name="Bot2" parent="." node_paths=PackedStringArray("ball", "upCorner", "downCorner") instance=ExtResource("1_7avor")]
+position = Vector2(688.773, 406.742)
+ball = NodePath("../Ball")
+upCorner = NodePath("../UpCorner")
+downCorner = NodePath("../DownCorner")
+DTBBS = 100.0
+timePrediction = 2.0
+
+[node name="Ball" parent="." instance=ExtResource("2_hrs1u")]
+position = Vector2(558.54, 363.842)
+PGP = -100000.0
+BGP = 100000.0
+
+[node name="PlayerBody" parent="." instance=ExtResource("3_jjqup")]
+position = Vector2(241.558, 379.288)
+
+[node name="UpCorner" type="Node2D" parent="."]
+position = Vector2(103.314, 183.948)
+scale = Vector2(0.140001, 0.150665)
+
+[node name="Sprite2D" type="Sprite2D" parent="UpCorner"]
+texture = ExtResource("4_07qiy")
+
+[node name="DownCorner" type="Node2D" parent="."]
+position = Vector2(105.833, 367.897)
+scale = Vector2(-0.129418, 0.131712)
+
+[node name="Sprite2D" type="Sprite2D" parent="DownCorner"]
+texture = ExtResource("4_07qiy")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://djjkgw58k6s86"]
+
+[ext_resource type="Script" path="res://Turbo/Turbo.gd" id="1_fdp8k"]
+[ext_resource type="Texture2D" uid="uid://04tml6jhnk1k" path="res://Turbo/Turbo.png" id="2_i5y2x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_31jxi"]
+radius = 22.0227
+
+[node name="Turbo" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_fdp8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_31jxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("2_i5y2x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

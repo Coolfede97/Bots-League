@@ -1,0 +1,80 @@
+extends Node2D
+
+var functionCallable=true
+@export var ball: RigidBody2D
+@export var bot: RigidBody2D
+@export var walkSpeed=int()
+@export var turboSpeed=int()
+@export var hyperTurboSpeed=float() 
+@export var turboVector=[Vector2(),Vector2()]
+var touchTurbo=false
+var kick=false
+#Obtiene la magnitud de un vector dado
+func GetMagnitude(vector):
+	var distance=sqrt(vector.x**2+vector.y**2)
+	return distance
+
+#Obtiene el vector normalizado del vector dado
+func hypotenuseNormalized(vector):
+	var hyp=sqrt(vector.x**2+vector.y**2)
+	var vectorNormalized=vector/hyp
+	return vectorNormalized
+
+func FuturePositionBounce():
+	var collisionPoint=ball.ball_ray_cast.get_collision_point()
+	var ballVelocityNormalized=hypotenuseNormalized(ball.linear_velocity)
+	# Collision Point To Ball Position Magnitude
+	var CPTBPM = GetMagnitude(ball.position-collisionPoint)
+	# The remaining part of the raycast after the wall
+	var magnitudeRemaining=GetMagnitude(ball.ball_ray_cast.target_position)-CPTBPM
+	var wallNormal= ball.ball_ray_cast.get_collision_normal()
+	var unitVector = GetOpositeUnitVector(ballVelocityNormalized,wallNormal)
+	var localballFP=collisionPoint+unitVector*magnitudeRemaining
+#	print(localballFP)
+	ball.ball_ray_cast.target_position=localballFP-ball.position
+	return localballFP
+func GetOpositeUnitVector(ballVelocityNormalized,wallNormal):
+	if wallNormal.x==1:
+		ballVelocityNormalized.x*=-1
+		return ballVelocityNormalized
+	elif wallNormal.x==-1:
+		ballVelocityNormalized.x*=-1
+		return ballVelocityNormalized
+	elif wallNormal.y==1:
+		ballVelocityNormalized.y*=-1
+		return ballVelocityNormalized
+	elif wallNormal.y==-1:
+		ballVelocityNormalized.y*=-1
+		return ballVelocityNormalized
+#
+func _physics_process(delta):
+#	print("functionCallable: ", functionCallable, ", kick: ", kick)
+	if functionCallable and !kick:
+		notAbleToKick(delta)
+func notAbleToKick(delta):
+	print("called")
+	functionCallable=false
+	if bot.position.x-ball.position.x>0 and kick==false:
+		bot.apply_central_force(hypotenuseNormalized(ball.position-bot.position)*walkSpeed*delta)
+	elif kick==false:
+		bot.turboRemaining-=0.01
+		var whichTurbo=Vector2()
+		if bot.position.y<320:
+			whichTurbo=turboVector[0]
+		else:
+			whichTurbo=turboVector[1]
+		while bot.turboRemaining!=0.5:
+			print("While called")
+			if bot.turboRemaining>0 and !touchTurbo:
+				print("If called")
+				bot.apply_central_force(hypotenuseNormalized(whichTurbo-bot.position)*turboSpeed*delta)
+				bot.turboRemaining-=delta/4.5
+				bot.get_node("TurboBar").ChangeValue(bot.turboRemaining)
+			elif !touchTurbo:
+				print("Elif called")
+				print(whichTurbo)
+				bot.apply_central_force(hypotenuseNormalized(whichTurbo-bot.position)*walkSpeed*delta)
+			await get_tree().create_timer(0.0000001).timeout
+		await get_tree().create_timer(0.001).timeout
+		touchTurbo=false
+	functionCallable=true

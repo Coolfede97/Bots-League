@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bitscnrp4e4ir"]
+
+[sub_resource type="Gradient" id="Gradient_s4xib"]
+offsets = PackedFloat32Array(0.534653, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cygxq"]
+gradient = SubResource("Gradient_s4xib")
+
+[sub_resource type="Curve" id="Curve_vpgwq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nh257"]
+curve = SubResource("Curve_vpgwq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jilpp"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 76.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 20.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_nh257")
+color_ramp = SubResource("GradientTexture1D_cygxq")
+
+[sub_resource type="GDScript" id="GDScript_iu3m7"]
+script/source = "extends GPUParticles2D
+
+func _ready():
+	process_material.direction=Vector3()
+"
+
+[node name="BallExplosion" type="GPUParticles2D"]
+self_modulate = Color(1, 0, 0, 1)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_jilpp")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+script = SubResource("GDScript_iu3m7")

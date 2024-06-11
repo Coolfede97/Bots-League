@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8bp4tkhsh5ff"]
+
+[ext_resource type="Script" path="res://Turbo/TurboSpawner.gd" id="1_17kpw"]
+[ext_resource type="PackedScene" uid="uid://djjkgw58k6s86" path="res://Turbo/turbo.tscn" id="2_6ln5v"]
+
+[node name="TurboSpawner" type="Node2D"]
+script = ExtResource("1_17kpw")
+turboInstance = ExtResource("2_6ln5v")

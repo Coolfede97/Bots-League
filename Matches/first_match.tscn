@@ -1,0 +1,347 @@
+[gd_scene load_steps=16 format=3 uid="uid://b3y3w858vgwnb"]
+
+[ext_resource type="Script" path="res://Walls/TestWalls.gd" id="1_6xg31"]
+[ext_resource type="Texture2D" uid="uid://dmd2yye3f0k80" path="res://Walls/Walls.png" id="2_r6t6x"]
+[ext_resource type="PackedScene" uid="uid://c63hwckc23hbu" path="res://Ball/SoccerBall.tscn" id="4_66fie"]
+[ext_resource type="PackedScene" uid="uid://djjkgw58k6s86" path="res://Turbo/turbo.tscn" id="5_853mh"]
+[ext_resource type="PackedScene" uid="uid://ood7sstdwddf" path="res://Player/player_body.tscn" id="5_kwr1x"]
+[ext_resource type="PackedScene" uid="uid://c8bp4tkhsh5ff" path="res://Turbo/turbo_spawner.tscn" id="5_ugvqc"]
+[ext_resource type="PackedScene" uid="uid://da4aisj2vljes" path="res://Bots/1/bot1.tscn" id="7_t6vrg"]
+[ext_resource type="Texture2D" uid="uid://cx0yx5b8ph4ha" path="res://Player/PlayerGoal.png" id="8_y0485"]
+[ext_resource type="Texture2D" uid="uid://brnfusp0yxg5q" path="res://Bots/BotsGoal.png" id="9_c6ipt"]
+[ext_resource type="PackedScene" uid="uid://bun3km0gw3hky" path="res://GoalManager/goal_manager.tscn" id="10_wa7ja"]
+[ext_resource type="FontFile" uid="uid://cxgbsqlpcdu3a" path="res://GoalManager/fonts/impact.ttf" id="11_pf3jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a72vr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dxudj"]
+bounce = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1xm1"]
+font = ExtResource("11_pf3jj")
+font_size = 201
+
+[sub_resource type="LabelSettings" id="LabelSettings_al2so"]
+font = ExtResource("11_pf3jj")
+font_size = 56
+
+[node name="FirstMatch" type="Node2D"]
+
+[node name="Walls_Container" type="Node2D" parent="." groups=["Walls"]]
+
+[node name="Wall" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(575, 10)
+scale = Vector2(48.1837, 1)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(573, 638)
+scale = Vector2(48.1837, 1)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall2"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall2/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(108, 572)
+scale = Vector2(1.74372, 9.59999)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall3"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall3/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall4" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(108, 76)
+scale = Vector2(1.744, 9.6)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall4"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall4/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall5" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(50, 157.631)
+scale = Vector2(5.06372, 1.44)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall5"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall5/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall6" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(50, 490.478)
+scale = Vector2(5.06372, 1.44)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall6"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall6/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall7" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(13, 325)
+scale = Vector2(-1.38648, 18.0087)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall7"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall7/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall8" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1038, 572)
+scale = Vector2(1.744, 15.4)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall8"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall8/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall9" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1040, 76)
+scale = Vector2(1.744, 15.4)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall9"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall9/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall10" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1108, 157.645)
+scale = Vector2(5.064, 7.24)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall10"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall10/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall11" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1106, 490.312)
+scale = Vector2(5.06372, 7.24)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall11"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall11/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall12" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1140, 320)
+scale = Vector2(-1.38648, 17.3687)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall12"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall12/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall13" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1140, -21)
+scale = Vector2(-8.90648, 17.3687)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall13"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall13/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall14" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(17, -24)
+scale = Vector2(-8.90648, 17.3687)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall14"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall14/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall15" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(11, 672)
+scale = Vector2(-8.90648, 17.3687)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall15"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall15/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Wall16" type="StaticBody2D" parent="Walls_Container"]
+z_index = 3
+position = Vector2(1134, 666)
+scale = Vector2(-8.90648, 17.3687)
+script = ExtResource("1_6xg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls_Container/Wall16"]
+shape = SubResource("RectangleShape2D_a72vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls_Container/Wall16/CollisionShape2D"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_r6t6x")
+
+[node name="Ball" parent="." instance=ExtResource("4_66fie")]
+position = Vector2(576, 324)
+physics_material_override = SubResource("PhysicsMaterial_dxudj")
+PGP = 108.177
+BGP = 1040.13
+
+[node name="PlayerBody" parent="." instance=ExtResource("5_kwr1x")]
+position = Vector2(75, 324)
+
+[node name="TurboSpawner" parent="." instance=ExtResource("5_ugvqc")]
+
+[node name="Turbo" parent="TurboSpawner" instance=ExtResource("5_853mh")]
+position = Vector2(190, 74)
+
+[node name="Turbo2" parent="TurboSpawner" instance=ExtResource("5_853mh")]
+position = Vector2(955, 74)
+
+[node name="Turbo3" parent="TurboSpawner" instance=ExtResource("5_853mh")]
+position = Vector2(955, 574)
+
+[node name="Turbo4" parent="TurboSpawner" instance=ExtResource("5_853mh")]
+position = Vector2(190, 574)
+
+[node name="Bot1" parent="." groups=["Players"] instance=ExtResource("7_t6vrg")]
+position = Vector2(1077, 324)
+MDTT = 500
+
+[node name="GoalsContainer" type="Node2D" parent="."]
+
+[node name="PlayerGoal" type="Sprite2D" parent="GoalsContainer"]
+modulate = Color(1, 1, 1, 0.203922)
+z_index = 2
+position = Vector2(-74.2835, 323.549)
+scale = Vector2(0.998583, 0.822746)
+texture = ExtResource("8_y0485")
+
+[node name="BotGoal" type="Sprite2D" parent="GoalsContainer"]
+modulate = Color(1, 1, 1, 0.203922)
+z_index = 2
+position = Vector2(1132.78, 321.781)
+scale = Vector2(0.551069, 0.565597)
+texture = ExtResource("9_c6ipt")
+
+[node name="UpCorner" type="Node2D" parent="GoalsContainer"]
+position = Vector2(125.419, 172.009)
+
+[node name="DownCorner" type="Node2D" parent="GoalsContainer"]
+position = Vector2(125.431, 475.97)
+
+[node name="GoalManager" parent="." node_paths=PackedStringArray("PlayerReference", "bot", "ready_go", "PlayerScore", "BotScore") instance=ExtResource("10_wa7ja")]
+ballInstance = ExtResource("4_66fie")
+playerIPosition = Vector2(75, 324)
+botIPosition = Vector2(1077, 324)
+resetSpeed = 200000.0
+PlayerReference = NodePath("../PlayerBody")
+botName = "Bot1"
+bot = NodePath("../Bot1")
+ready_go = NodePath("ReadyGo")
+PlayerScore = NodePath("PlayerScore")
+BotScore = NodePath("BotScore")
+
+[node name="ReadyGo" type="Label" parent="GoalManager"]
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+offset_left = 333.611
+offset_top = 197.008
+offset_right = 833.611
+offset_bottom = 446.008
+text = "READY"
+label_settings = SubResource("LabelSettings_f1xm1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerScore" type="Label" parent="GoalManager"]
+z_index = 3
+offset_left = 51.15
+offset_top = 58.0
+offset_right = 91.15
+offset_bottom = 130.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_al2so")
+
+[node name="BotScore" type="Label" parent="GoalManager"]
+z_index = 3
+offset_left = 1074.95
+offset_top = 58.0
+offset_right = 1114.95
+offset_bottom = 130.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_al2so")
