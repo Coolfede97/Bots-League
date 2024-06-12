@@ -86,7 +86,7 @@ func _physics_process(delta):
 		hitBall(delta)
 		functionCallable=false
 	elif functionCallable2==true and !isOfensive:
-		defenseGoal()
+		defenseGoal(delta)
 #	if move==true:
 #		if get_parent().get_node("Ball")!=null:
 #			BTBV=ball.global_position-global_position
@@ -170,20 +170,22 @@ func hitBall(delta):
 				calculator.kick==false
 			
 		functionCallable=true
-func defenseGoal():
+func defenseGoal(delta):
+	functionCallable2=false
 	if GetMagnitude(ball.position-goalCenterVector)<300:
 		if turboRemaining>0:
-			apply_central_force(hypotenuseNormalized(ball.position-position)*turboSpeed)
+			apply_central_force(hypotenuseNormalized(ball.position-position)*turboSpeed*delta)
 			turboRemaining-=get_process_delta_time()/4.5
 			get_node("TurboBar").ChangeValue(turboRemaining)
 		else:
-			apply_central_force(hypotenuseNormalized(ball.position-position)*walkSpeed)
+			apply_central_force(hypotenuseNormalized(ball.position-position)*walkSpeed*delta)
 	elif turboRemaining<0.2:
 		var whichTurbo=Vector2()
 		if position.y<320:
 			whichTurbo=turboVector[0]
 		else:
 			whichTurbo=turboVector[1]
-		apply_central_force(hypotenuseNormalized(whichTurbo-position)*walkSpeed)
+		apply_central_force(hypotenuseNormalized(whichTurbo-position)*walkSpeed*delta)
 	elif GetMagnitude(goalCenterVector-position)>10:
-		apply_central_force(hypotenuseNormalized(goalCenterVector-position)*walkSpeed)
+		apply_central_force(hypotenuseNormalized(goalCenterVector-position)*walkSpeed*delta)
+	functionCallable2=true

@@ -50,7 +50,7 @@ func GetOpositeUnitVector(ballVelocityNormalized,wallNormal):
 #
 func _physics_process(delta):
 #	print("functionCallable: ", functionCallable, ", kick: ", kick)
-	if functionCallable and !kick:
+	if functionCallable and !kick and bot.isOfensive==true:
 		notAbleToKick(delta)
 func notAbleToKick(delta):
 	functionCallable=false

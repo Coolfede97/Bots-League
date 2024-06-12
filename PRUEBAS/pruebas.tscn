@@ -20,7 +20,6 @@ friction = 0.0
 
 [node name="Bot2" parent="." node_paths=PackedStringArray("ball", "upCorner", "downCorner") groups=["Players"] instance=ExtResource("1_7avor")]
 position = Vector2(1088.88, 319.113)
-isOfensive = true
 walkSpeed = 60000
 turboSpeed = 120000
 hyperTurboSpeed = 240000.0
