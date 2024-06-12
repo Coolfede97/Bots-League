@@ -46,6 +46,7 @@ texture = ExtResource("4_q7d34")
 [node name="Bot2RayCast" type="RayCast2D" parent="."]
 
 [node name="Bot2RayCastPTS" type="RayCast2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 
 [node name="Calculator" type="Node2D" parent="."]
 script = ExtResource("5_7imdi")

@@ -82,7 +82,7 @@ func _physics_process(delta):
 	bot_2_ray_cast_pts.global_rotation=0
 	if Input.is_action_just_pressed("ui_focus_next"):
 		position=Vector2(893.952,364.697)
-	if functionCallable==true and isOfensive:
+	if functionCallable==true and isOfensive and calculator.lookingForturbo==false:
 		hitBall(delta)
 		functionCallable=false
 	elif functionCallable2==true and !isOfensive:
@@ -131,6 +131,7 @@ func hitBall(delta):
 					break
 			bot_2_ray_cast_pts.target_position=positionToShot-position
 			if bot_2_ray_cast_pts.is_colliding():
+				print("AAAD")
 				calculator.kick=false
 				break
 			# Se fija si al distancia que puede recorrer el bot en función de time es suficiente para llegar a positionToShot

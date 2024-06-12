@@ -8,6 +8,7 @@ var functionCallable=true
 @export var hyperTurboSpeed=float() 
 @export var turboVector=[Vector2(),Vector2()]
 var touchTurbo=false
+var lookingForturbo=false
 var kick=false
 #Obtiene la magnitud de un vector dado
 func GetMagnitude(vector):
@@ -52,11 +53,11 @@ func _physics_process(delta):
 	if functionCallable and !kick:
 		notAbleToKick(delta)
 func notAbleToKick(delta):
-	print("called")
 	functionCallable=false
 	if bot.position.x-ball.position.x>0 and kick==false:
 		bot.apply_central_force(hypotenuseNormalized(ball.position-bot.position)*walkSpeed*delta)
 	elif kick==false:
+		lookingForturbo=true
 		bot.turboRemaining-=0.01
 		var whichTurbo=Vector2()
 		if bot.position.y<320:
@@ -64,17 +65,14 @@ func notAbleToKick(delta):
 		else:
 			whichTurbo=turboVector[1]
 		while bot.turboRemaining!=0.5:
-			print("While called")
 			if bot.turboRemaining>0 and !touchTurbo:
-				print("If called")
 				bot.apply_central_force(hypotenuseNormalized(whichTurbo-bot.position)*turboSpeed*delta)
 				bot.turboRemaining-=delta/4.5
 				bot.get_node("TurboBar").ChangeValue(bot.turboRemaining)
 			elif !touchTurbo:
-				print("Elif called")
-				print(whichTurbo)
 				bot.apply_central_force(hypotenuseNormalized(whichTurbo-bot.position)*walkSpeed*delta)
 			await get_tree().create_timer(0.0000001).timeout
 		await get_tree().create_timer(0.001).timeout
 		touchTurbo=false
+		lookingForturbo=false
 	functionCallable=true
