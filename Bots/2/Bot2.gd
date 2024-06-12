@@ -131,7 +131,6 @@ func hitBall(delta):
 					break
 			bot_2_ray_cast_pts.target_position=positionToShot-position
 			if bot_2_ray_cast_pts.is_colliding():
-				print("AAAD")
 				calculator.kick=false
 				break
 			# Se fija si al distancia que puede recorrer el bot en función de time es suficiente para llegar a positionToShot
