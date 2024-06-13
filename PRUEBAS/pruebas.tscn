@@ -20,6 +20,7 @@ friction = 0.0
 
 [node name="Bot2" parent="." node_paths=PackedStringArray("ball", "upCorner", "downCorner") groups=["Players"] instance=ExtResource("1_7avor")]
 position = Vector2(1088.88, 319.113)
+isOfensive = true
 walkSpeed = 60000
 turboSpeed = 120000
 hyperTurboSpeed = 240000.0
@@ -47,9 +48,6 @@ BGP = 100000.0
 [node name="PlayerBody" parent="." instance=ExtResource("3_jjqup")]
 position = Vector2(132.709, 518.159)
 physics_material_override = SubResource("PhysicsMaterial_ilw6e")
-walkSpeed = 60000
-turboSpeed = 120000
-hyperTurboSpeed = 240000.0
 turboRemaining = 1e+09
 positionDestination = Vector2(285.522, 0)
 

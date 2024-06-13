@@ -33,7 +33,6 @@ var ballFP=Vector2(0,0) # Ball Future Position
 	1.6, 1.7, 1.8, 1.9, 2.0]
 @export var goalCenterVector=Vector2()
 @export var halfPitch=float()
-
 var move=true
 #Obtiene la magnitud de un vector dado
 func GetMagnitude(vector):
