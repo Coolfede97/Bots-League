@@ -11,7 +11,8 @@ func ChangeValue(turboRemaining):
 
 func AddTurbo(body,turboPosition):
 	if body.is_in_group("Bots"):
-		body.get_node("Calculator").touchTurbo=true
+		if body.name=="Bot2":
+			body.get_node("Calculator").touchTurbo=true
 	turboNeeded=0.5-body.turboRemaining
 	#El turboRemaining de los jugador vuelve al máximo
 	while turboAdded!=turboNeeded:
