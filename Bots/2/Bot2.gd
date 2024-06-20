@@ -3,7 +3,7 @@ extends RigidBody2D
 var functionCallable=true
 var functionCallable2=true
 @export var isOfensive=bool()
-var touchTurbo
+var cronometer: float
 # Radius of the bot's collision = 24.69
 # Radius of the ball's collision = 17.06
 var AOPPSWS=111.06275 # Amount Of Pixels Per Second Walk Speed - En un segundo avanza 111.06275
@@ -74,9 +74,16 @@ func GetOpositeUnitVector(ballVelocityNormalized,wallNormal):
 	elif wallNormal.y==-1:
 		ballVelocityNormalized.y*=-1
 		return ballVelocityNormalized
+func resetScript():
+	cronometer=0
+	functionCallable=true
 func _physics_process(delta):
-#	print("script 1 ","functionCallable: ", functionCallable)
-
+	if linear_velocity==Vector2(0,0) and isOfensive:
+		cronometer+=get_process_delta_time()
+		if cronometer>5:
+			resetScript()
+	else:
+		cronometer=0	
 	bot_2_ray_cast.global_rotation=0
 	bot_2_ray_cast_pts.global_rotation=0
 	if Input.is_action_just_pressed("ui_focus_next"):
@@ -129,6 +136,9 @@ func hitBall(delta):
 					calculator.kick=false
 					break
 			bot_2_ray_cast_pts.target_position=positionToShot-position
+			var px = hypotenuseNormalized(positionToShot-position)
+			px*=55
+			bot_2_ray_cast_pts.target_position=(positionToShot-position)+px
 			if bot_2_ray_cast_pts.is_colliding():
 				calculator.kick=false
 				break

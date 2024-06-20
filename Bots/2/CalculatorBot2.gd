@@ -1,6 +1,7 @@
 extends Node2D
 
 var functionCallable=true
+var cronometer: float
 @export var ball: RigidBody2D
 @export var bot: RigidBody2D
 @export var walkSpeed=int()
@@ -47,9 +48,19 @@ func GetOpositeUnitVector(ballVelocityNormalized,wallNormal):
 	elif wallNormal.y==-1:
 		ballVelocityNormalized.y*=-1
 		return ballVelocityNormalized
-#
+func resetScript():
+	cronometer=0
+	functionCallable=true
+	touchTurbo=false
+	lookingForturbo=false
+	kick=false
 func _physics_process(delta):
-#	print("functionCallable: ", functionCallable, ", kick: ", kick)
+	if bot.linear_velocity==Vector2(0,0) and bot.isOfensive:
+		cronometer+=get_process_delta_time()
+		if cronometer>5:
+			resetScript()
+	else:
+		cronometer=0	
 	if functionCallable and !kick and bot.isOfensive==true:
 		notAbleToKick(delta)
 func notAbleToKick(delta):
