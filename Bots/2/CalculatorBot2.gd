@@ -66,7 +66,10 @@ func _physics_process(delta):
 func notAbleToKick(delta):
 	functionCallable=false
 	if bot.position.x-ball.position.x>0 and kick==false:
-		bot.apply_central_force(hypotenuseNormalized(ball.position-bot.position)*walkSpeed*delta)
+		if ball.linear_velocity.x<0 or ball.position.distance_to(bot.position)>350:
+			bot.apply_central_force(hypotenuseNormalized(bot.ballFP-bot.position)*walkSpeed*delta)
+		else:
+			bot.apply_central_force(hypotenuseNormalized(ball.position-bot.position)*walkSpeed*delta)
 	elif kick==false:
 		lookingForturbo=true
 		bot.turboRemaining-=0.01
