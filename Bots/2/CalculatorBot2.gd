@@ -66,7 +66,7 @@ func _physics_process(delta):
 func notAbleToKick(delta):
 	functionCallable=false
 	if bot.position.x-ball.position.x>0 and kick==false:
-		if ball.linear_velocity.x<0 or ball.position.distance_to(bot.position)>350:
+		if ball.linear_velocity.x<0 or ball.position.distance_to(bot.position)>250:
 			bot.apply_central_force(hypotenuseNormalized(bot.ballFP-bot.position)*walkSpeed*delta)
 		else:
 			bot.apply_central_force(hypotenuseNormalized(ball.position-bot.position)*walkSpeed*delta)
