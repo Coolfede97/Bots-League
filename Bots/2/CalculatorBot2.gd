@@ -78,7 +78,7 @@ func notAbleToKick(delta):
 			whichTurbo=turboVector[0]
 		else:
 			whichTurbo=turboVector[1]
-		while bot.turboRemaining!=0.5:
+		while bot.turboRemaining!=0.5 and !touchTurbo:
 			if bot.turboRemaining>0 and !touchTurbo:
 				bot.apply_central_force(hypotenuseNormalized(whichTurbo-bot.position)*turboSpeed*delta)
 				bot.turboRemaining-=delta/4.5
