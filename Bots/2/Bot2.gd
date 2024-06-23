@@ -147,10 +147,10 @@ func hitBall(delta):
 				calculator.kick=true
 				linear_velocity=Vector2(0,0)
 				var timer2=2.2
-				while positionToShot.distance_to(position)>2:
+				while positionToShot.distance_to(position)>4:
 					var direction=hypotenuseNormalized(positionToShot-position)
 					apply_central_force(delta*walkSpeed*direction)
-					await get_tree().create_timer(0.0000001).timeout
+					await get_tree().create_timer(get_physics_process_delta_time()).timeout
 					timer2-=get_process_delta_time()
 					if timer2<=0:
 						break
@@ -165,7 +165,7 @@ func hitBall(delta):
 							turboRemaining-=delta/1.5
 							get_node("TurboBar").ChangeValue(turboRemaining)
 							timer-=get_physics_process_delta_time()
-							await get_tree().create_timer(0.0000001).timeout
+							await get_tree().create_timer(get_physics_process_delta_time()).timeout
 						calculator.kick=false
 						break
 					await get_tree().create_timer(0.0000001).timeout
