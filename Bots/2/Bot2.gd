@@ -165,7 +165,7 @@ func hitBall(delta):
 							turboRemaining-=delta/1.5
 							get_node("TurboBar").ChangeValue(turboRemaining)
 							timer-=get_physics_process_delta_time()
-							await get_tree().create_timer(get_physics_process_delta_time()).timeout
+							await get_tree().create_timer(0.0000001).timeout
 						calculator.kick=false
 						break
 					await get_tree().create_timer(0.0000001).timeout
