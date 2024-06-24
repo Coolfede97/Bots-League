@@ -150,7 +150,7 @@ func hitBall(delta):
 				while positionToShot.distance_to(position)>4:
 					var direction=hypotenuseNormalized(positionToShot-position)
 					apply_central_force(delta*walkSpeed*direction)
-					await get_tree().create_timer(get_physics_process_delta_time()).timeout
+					await get_tree().create_timer(0.0000001).timeout
 					timer2-=get_process_delta_time()
 					if timer2<=0:
 						break
