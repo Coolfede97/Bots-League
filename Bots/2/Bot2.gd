@@ -78,8 +78,14 @@ func resetScript():
 	cronometer=0
 	functionCallable=true
 func _physics_process(delta):
-	if linear_velocity==Vector2(0,0) and isOfensive:
-		cronometer+=get_process_delta_time()
+	if GetMagnitude(linear_velocity)<3.1 and isOfensive:
+		if GetMagnitude(ball.linear_velocity)<3.1 and cronometer>3:
+			var direction=hypotenuseNormalized(position-ball.position)
+			while (GetMagnitude(position-ball.position)<120):
+				apply_central_force(direction*walkSpeed*delta)
+				
+		else:
+			cronometer+=get_process_delta_time()
 		if cronometer>5:
 			resetScript()
 	else:
