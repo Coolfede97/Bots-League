@@ -82,7 +82,9 @@ func _physics_process(delta):
 		if GetMagnitude(ball.linear_velocity)<3.1 and cronometer>3:
 			var direction=hypotenuseNormalized(position-ball.position)
 			while (GetMagnitude(position-ball.position)<120):
+				print("ADSDSADAS")
 				apply_central_force(direction*walkSpeed*delta)
+				await get_tree().create_timer(0.0000001).timeout
 				
 		else:
 			cronometer+=get_process_delta_time()
