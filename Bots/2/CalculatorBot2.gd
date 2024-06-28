@@ -11,6 +11,7 @@ var cronometer: float
 var touchTurbo=false
 var lookingForturbo=false
 var kick=false
+var destrabando=false
 #Obtiene la magnitud de un vector dado
 func GetMagnitude(vector):
 	var distance=sqrt(vector.x**2+vector.y**2)
@@ -61,7 +62,7 @@ func _physics_process(delta):
 			resetScript()
 	else:
 		cronometer=0	
-	if functionCallable and !kick and bot.isOfensive==true:
+	if functionCallable and !kick and bot.isOfensive==true and !destrabando:
 		notAbleToKick(delta)
 func notAbleToKick(delta):
 	functionCallable=false

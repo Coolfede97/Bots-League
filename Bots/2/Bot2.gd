@@ -81,16 +81,19 @@ func _physics_process(delta):
 	print(cronometer)
 	if linear_velocity==Vector2(0,0) and isOfensive:
 		cronometer+=get_process_delta_time()
-		if cronometer>5:
+		if cronometer>8:
 			resetScript()
 	elif position.distance_to(ball.position)<115:
 		cronometer+=get_process_delta_time()
-		if cronometer>3:
+		if cronometer>6:
+			cronometer=0
+			calculator.destrabando=true
 			var direction=hypotenuseNormalized(position-ball.position)
-			while (GetMagnitude(position-ball.position)<120):
+			while GetMagnitude(position-ball.position)<120:
 				apply_central_force(direction*walkSpeed*delta)
 				await get_tree().create_timer(0.0000001).timeout
-			cronometer=0
+			calculator.destrabando=false
+			
 	else:
 		cronometer=0	
 	bot_2_ray_cast.global_rotation=0
