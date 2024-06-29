@@ -89,6 +89,10 @@ func Goal(ballPosition, direction):
 		
 	botIsInIP=false
 	playerIsInIP=false
+	if BotScore.text=="7":
+		botWins()
+	elif PlayerScore.text=="7":
+		playerWins()
 	await get_tree().create_timer(0.5).timeout
 	# Instancia una nueva pelota
 	var ball=ballInstance.instantiate()
@@ -132,6 +136,13 @@ func Goal(ballPosition, direction):
 		ready_go.modulate.a=lerp(ready_go.modulate.a, -1.0 , 0.5*get_process_delta_time())
 		await get_tree().create_timer(0.0001).timeout
 	ready_go.modulate.a=0 
+
+func playerWins():
+	pass
+
+func botWins():
+	print("GANEEE")
+
 # Buscar en bot1
 func hypotenuseNormalized(vector):
 	var hyp=sqrt(vector.x**2+vector.y**2)
