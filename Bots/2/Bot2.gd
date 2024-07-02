@@ -56,7 +56,7 @@ func FuturePositionBounce():
 	var wallNormal= ball.ball_ray_cast.get_collision_normal()
 	var unitVector = GetOpositeUnitVector(ballVelocityNormalized,wallNormal)
 	var localballFP=collisionPoint+unitVector*magnitudeRemaining
-#	print(localballFP)
+
 	ball.ball_ray_cast.target_position=localballFP-ball.position
 	return localballFP
 
@@ -78,7 +78,6 @@ func resetScript():
 	cronometer=0
 	functionCallable=true
 func _physics_process(delta):
-	print(cronometer)
 	if linear_velocity==Vector2(0,0) and isOfensive:
 		cronometer+=get_process_delta_time()
 		if cronometer>8:

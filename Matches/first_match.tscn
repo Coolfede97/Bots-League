@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3y3w858vgwnb"]
+[gd_scene load_steps=17 format=3 uid="uid://b3y3w858vgwnb"]
 
 [ext_resource type="Script" path="res://Walls/TestWalls.gd" id="1_6xg31"]
 [ext_resource type="Texture2D" uid="uid://dmd2yye3f0k80" path="res://Walls/Walls.png" id="2_r6t6x"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cx0yx5b8ph4ha" path="res://Player/PlayerGoal.png" id="8_y0485"]
 [ext_resource type="Texture2D" uid="uid://brnfusp0yxg5q" path="res://Bots/BotsGoal.png" id="9_c6ipt"]
 [ext_resource type="PackedScene" uid="uid://bun3km0gw3hky" path="res://GoalManager/goal_manager.tscn" id="10_wa7ja"]
+[ext_resource type="PackedScene" uid="uid://b1xe5vv5r4r8a" path="res://GoalManager/PlayersExplosion.tscn" id="11_2u413"]
 [ext_resource type="FontFile" uid="uid://cxgbsqlpcdu3a" path="res://GoalManager/fonts/impact.ttf" id="11_pf3jj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a72vr"]
@@ -304,6 +305,7 @@ position = Vector2(125.431, 475.97)
 
 [node name="GoalManager" parent="." node_paths=PackedStringArray("PlayerReference", "bot", "ready_go", "PlayerScore", "BotScore") instance=ExtResource("10_wa7ja")]
 ballInstance = ExtResource("4_66fie")
+bot2Instance = ExtResource("11_2u413")
 playerIPosition = Vector2(75, 324)
 botIPosition = Vector2(1077, 324)
 resetSpeed = 200000.0

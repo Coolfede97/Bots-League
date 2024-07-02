@@ -2,6 +2,7 @@ extends Node2D
 
 @export var ballExplosion: PackedScene
 @export var ballInstance: PackedScene
+@export var bot2Instance: PackedScene
 @export var playerIPosition=Vector2() #Player Initial Position
 @export var botIPosition=Vector2() # Bot Initial Position
 @export var resetSpeed=float()
@@ -91,7 +92,7 @@ func Goal(ballPosition, direction):
 	playerIsInIP=false
 	if BotScore.text=="7":
 		botWins()
-	elif PlayerScore.text=="7":
+	elif PlayerScore.text=="1":
 		playerWins()
 	await get_tree().create_timer(0.5).timeout
 	# Instancia una nueva pelota
@@ -138,7 +139,10 @@ func Goal(ballPosition, direction):
 	ready_go.modulate.a=0 
 
 func playerWins():
-	pass
+	var explosion=bot2Instance.instantiate()
+	explosion.position=bot.position
+	add_child(explosion)
+	bot.queue_free()
 
 func botWins():
 	print("GANEEE")
