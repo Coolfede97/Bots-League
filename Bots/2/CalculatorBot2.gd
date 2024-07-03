@@ -3,7 +3,7 @@ extends Node2D
 var functionCallable=true
 var cronometer: float
 @export var ball: RigidBody2D
-@export var bot: RigidBody2D
+@export var bot : RigidBody2D
 @export var walkSpeed=int()
 @export var turboSpeed=int()
 @export var hyperTurboSpeed=float() 

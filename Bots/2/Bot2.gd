@@ -78,11 +78,11 @@ func resetScript():
 	cronometer=0
 	functionCallable=true
 func _physics_process(delta):
-	if linear_velocity==Vector2(0,0) and isOfensive:
+	if linear_velocity==Vector2(0,0) and isOfensive and move==true:
 		cronometer+=get_process_delta_time()
 		if cronometer>8:
 			resetScript()
-	elif position.distance_to(ball.position)<115:
+	elif ball!=null and position.distance_to(ball.position)<115 and move==true:
 		cronometer+=get_process_delta_time()
 		if cronometer>6:
 			cronometer=0
@@ -97,8 +97,6 @@ func _physics_process(delta):
 		cronometer=0	
 	bot_2_ray_cast.global_rotation=0
 	bot_2_ray_cast_pts.global_rotation=0
-	if Input.is_action_just_pressed("ui_focus_next"):
-		position=Vector2(893.952,364.697)
 	if functionCallable==true and isOfensive and calculator.lookingForturbo==false:
 		hitBall(delta)
 		functionCallable=false
@@ -192,7 +190,7 @@ func hitBall(delta):
 		functionCallable=true
 func defenseGoal(delta):
 	functionCallable2=false
-	if GetMagnitude(ball.position-goalCenterVector)<300:
+	if ball!=null and GetMagnitude(ball.position-goalCenterVector)<300:
 		if turboRemaining>0:
 			apply_central_force(hypotenuseNormalized(ball.position-position)*turboSpeed*delta)
 			turboRemaining-=get_process_delta_time()/4.5

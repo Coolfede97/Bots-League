@@ -32,9 +32,8 @@ DTBBS = 152.813
 goalCenterVector = Vector2(1088.88, 301.295)
 halfPitch = 585.11
 
-[node name="Calculator" parent="Bot2" index="5" node_paths=PackedStringArray("ball", "bot")]
+[node name="Calculator" parent="Bot2" index="5" node_paths=PackedStringArray("ball")]
 ball = NodePath("../../Ball")
-bot = NodePath("..")
 walkSpeed = 60000
 turboSpeed = 120000
 hyperTurboSpeed = 240000.0

@@ -1,5 +1,7 @@
 extends Node2D
 
+var bot2 = ResourceLoader.load("res://Bots/2/bot2.tscn")
+var bots = [bot2]
 @export var ballExplosion: PackedScene
 @export var ballInstance: PackedScene
 @export var bot2Instance: PackedScene
@@ -16,6 +18,7 @@ var botIsInIP=bool() # Bot Is In Initial Position
 @export var BotScore: Label
 
 func _ready():
+	print(bots[0])
 	PlayerReference.move=false
 	bot.move=false
 	await get_tree().create_timer(0.5).timeout
@@ -139,10 +142,16 @@ func Goal(ballPosition, direction):
 	ready_go.modulate.a=0 
 
 func playerWins():
+	var nextBot = bots[0].instantiate()
+	nextBot.position=bot.position
 	var explosion=bot2Instance.instantiate()
 	explosion.position=bot.position
 	add_child(explosion)
 	bot.queue_free()
+	bot=nextBot
+	get_parent().add_child(nextBot)
+	
+	bots.remove_at(0)
 
 func botWins():
 	print("GANEEE")
