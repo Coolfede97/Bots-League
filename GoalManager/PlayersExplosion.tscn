@@ -30,9 +30,10 @@ scale_curve = SubResource("CurveTexture_nh257")
 color = Color(1, 0.686275, 0, 1)
 color_ramp = SubResource("GradientTexture1D_cygxq")
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="PlayerExplosion" type="GPUParticles2D"]
 amount = 70
 process_material = SubResource("ParticleProcessMaterial_fyqk2")
 lifetime = 3.0
+one_shot = true
 speed_scale = 1.5
 explosiveness = 1.0
