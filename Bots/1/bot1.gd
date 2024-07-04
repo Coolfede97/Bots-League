@@ -12,6 +12,7 @@ var BTBV #Bot to Ball Vector
 @export var mDTT=int() #La distancia minima entre el bot y la pelota para usar el Turbo-- Min Distance To Turbo
 @export var MDTHT=int() #La distancia máxima entre el bot y la pelota para usar el HyperTurbo-- Max Distance To HyperTurbo
 var touchTurbo=bool()
+@export var ball : RigidBody2D
 var move=true
 #Obtiene la magnitud de un vector dado
 func GetMagnitude(vector):
@@ -26,8 +27,8 @@ func hypotenuseNormalized(vector):
 func _physics_process(delta):
 	#Vector que va desde el bot hasta la pelota
 	if move==true:
-		if get_parent().get_node("Ball")!=null:
-			BTBV=get_parent().get_node("Ball").global_position-global_position
+		if ball!=null:
+			BTBV=ball.global_position-global_position
 			
 			#Obtiene el vector normalizado de BTBV
 			direction=hypotenuseNormalized(BTBV)

@@ -17,12 +17,14 @@ linear_damp = 3.0
 script = ExtResource("1_7vcnu")
 isOfensive = true
 walkSpeed = 60000
-turboSpeed = 12000
-hyperTurboSpeed = 24000.0
+turboSpeed = 120000
+hyperTurboSpeed = 240000.0
 turboRemaining = 0.5
+turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
 MDTT = 700
 mDTT = 400
 MDTHT = 400
+DTBBS = 152.813
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p5t6u")
@@ -52,3 +54,7 @@ modulate = Color(1, 0, 0, 1)
 [node name="Calculator" type="Node2D" parent="." node_paths=PackedStringArray("bot")]
 script = ExtResource("5_7imdi")
 bot = NodePath("..")
+walkSpeed = 60000
+turboSpeed = 120000
+hyperTurboSpeed = 240000.0
+turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]

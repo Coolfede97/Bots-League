@@ -56,13 +56,15 @@ func resetScript():
 	lookingForturbo=false
 	kick=false
 func _physics_process(delta):
+	print(ball)
+	print(bot)
 	if bot.linear_velocity==Vector2(0,0) and bot.isOfensive:
 		cronometer+=get_process_delta_time()
 		if cronometer>5:
 			resetScript()
 	else:
 		cronometer=0	
-	if functionCallable and !kick and bot.isOfensive==true and !destrabando:
+	if functionCallable and !kick and bot.isOfensive==true and !destrabando and ball!=null:
 		notAbleToKick(delta)
 func notAbleToKick(delta):
 	functionCallable=false

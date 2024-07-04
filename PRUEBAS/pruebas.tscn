@@ -20,21 +20,14 @@ friction = 0.0
 
 [node name="Bot2" parent="." node_paths=PackedStringArray("ball", "upCorner", "downCorner") groups=["Players"] instance=ExtResource("1_7avor")]
 position = Vector2(1088.88, 319.113)
-turboSpeed = 120000
-hyperTurboSpeed = 240000.0
-turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
 ball = NodePath("../Ball")
 upCorner = NodePath("../UpCorner")
 downCorner = NodePath("../DownCorner")
-DTBBS = 152.813
 goalCenterVector = Vector2(1088.88, 301.295)
 halfPitch = 585.11
 
 [node name="Calculator" parent="Bot2" index="5" node_paths=PackedStringArray("ball")]
 ball = NodePath("../../Ball")
-walkSpeed = 60000
-turboSpeed = 120000
-hyperTurboSpeed = 240000.0
 turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
 
 [node name="Ball" parent="." instance=ExtResource("2_hrs1u")]

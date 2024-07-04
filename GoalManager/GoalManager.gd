@@ -104,6 +104,7 @@ func Goal(ballPosition, direction):
 	ball.PGP=ballPGP
 	ball.BGP=ballBGP
 	get_parent().add_child(ball)
+	bot.ball=get_parent().get_node("Ball")
 	
 	# Resetea el turbo de los jugadores
 	while not bot.turboRemaining>=0.5 or not PlayerReference.turboRemaining>=0.5:
@@ -144,14 +145,16 @@ func Goal(ballPosition, direction):
 func playerWins():
 	var nextBot = bots[0].instantiate()
 	nextBot.position=bot.position
+	nextBot.upCorner=get_parent().get_node("GoalsContainer").get_node("UpCorner")
+	nextBot.downCorner=get_parent().get_node("GoalsContainer").get_node("DownCorner")
 	var explosion=bot2Instance.instantiate()
 	explosion.position=bot.position
 	add_child(explosion)
 	bot.queue_free()
 	bot=nextBot
 	get_parent().add_child(nextBot)
-	
 	bots.remove_at(0)
+
 
 func botWins():
 	print("GANEEE")

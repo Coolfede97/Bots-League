@@ -277,9 +277,10 @@ position = Vector2(955, 574)
 [node name="Turbo4" parent="TurboSpawner" instance=ExtResource("5_853mh")]
 position = Vector2(190, 574)
 
-[node name="Bot1" parent="." groups=["Players"] instance=ExtResource("7_t6vrg")]
+[node name="Bot1" parent="." node_paths=PackedStringArray("ball") groups=["Players"] instance=ExtResource("7_t6vrg")]
 position = Vector2(1077, 324)
 MDTT = 500
+ball = NodePath("../Ball")
 
 [node name="GoalsContainer" type="Node2D" parent="."]
 

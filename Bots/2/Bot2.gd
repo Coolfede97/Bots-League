@@ -34,6 +34,7 @@ var ballFP=Vector2(0,0) # Ball Future Position
 @export var goalCenterVector=Vector2()
 @export var halfPitch=float()
 var move=true
+
 #Obtiene la magnitud de un vector dado
 func GetMagnitude(vector):
 	var distance=sqrt(vector.x**2+vector.y**2)
@@ -97,10 +98,10 @@ func _physics_process(delta):
 		cronometer=0	
 	bot_2_ray_cast.global_rotation=0
 	bot_2_ray_cast_pts.global_rotation=0
-	if functionCallable==true and isOfensive and calculator.lookingForturbo==false:
+	if functionCallable==true and isOfensive and calculator.lookingForturbo==false and ball!=null:
 		hitBall(delta)
 		functionCallable=false
-	elif functionCallable2==true and !isOfensive:
+	elif functionCallable2==true and !isOfensive and ball!=null:
 		defenseGoal(delta)
 #	if move==true:
 #		if get_parent().get_node("Ball")!=null:
