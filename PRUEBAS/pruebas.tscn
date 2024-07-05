@@ -28,7 +28,6 @@ halfPitch = 585.11
 
 [node name="Calculator" parent="Bot2" index="5" node_paths=PackedStringArray("ball")]
 ball = NodePath("../../Ball")
-turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
 
 [node name="Ball" parent="." instance=ExtResource("2_hrs1u")]
 position = Vector2(191.934, 471.278)

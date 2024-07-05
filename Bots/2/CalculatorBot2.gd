@@ -33,7 +33,6 @@ func FuturePositionBounce():
 	var wallNormal= ball.ball_ray_cast.get_collision_normal()
 	var unitVector = GetOpositeUnitVector(ballVelocityNormalized,wallNormal)
 	var localballFP=collisionPoint+unitVector*magnitudeRemaining
-#	print(localballFP)
 	ball.ball_ray_cast.target_position=localballFP-ball.position
 	return localballFP
 func GetOpositeUnitVector(ballVelocityNormalized,wallNormal):
@@ -56,8 +55,6 @@ func resetScript():
 	lookingForturbo=false
 	kick=false
 func _physics_process(delta):
-	print(ball)
-	print(bot)
 	if bot.linear_velocity==Vector2(0,0) and bot.isOfensive:
 		cronometer+=get_process_delta_time()
 		if cronometer>5:
@@ -66,6 +63,7 @@ func _physics_process(delta):
 		cronometer=0	
 	if functionCallable and !kick and bot.isOfensive==true and !destrabando and ball!=null:
 		notAbleToKick(delta)
+	print("functionCallable: ",functionCallable, " Kick: ", kick, " Destrabando: ", destrabando, " Ball: ", ball)
 func notAbleToKick(delta):
 	functionCallable=false
 	if bot.position.x-ball.position.x>0 and kick==false:
