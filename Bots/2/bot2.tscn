@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5t6u"]
 radius = 24.6882
 
-[node name="Bot2" type="RigidBody2D" groups=["Bots"]]
+[node name="Bot2" type="RigidBody2D" groups=["Bots", "Players"]]
 z_index = 1
 mass = 2.0
 gravity_scale = 0.0
@@ -20,7 +20,7 @@ walkSpeed = 60000
 turboSpeed = 120000
 hyperTurboSpeed = 240000.0
 turboRemaining = 0.5
-turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
+turboVector = [Vector2(955, 74), Vector2(955, 574)]
 MDTT = 700
 mDTT = 400
 MDTHT = 400
@@ -57,4 +57,4 @@ bot = NodePath("..")
 walkSpeed = 60000
 turboSpeed = 120000
 hyperTurboSpeed = 240000.0
-turboVector = [Vector2(1088.88, 101.295), Vector2(1088.88, 560)]
+turboVector = [Vector2(955, 74), Vector2(955, 574)]

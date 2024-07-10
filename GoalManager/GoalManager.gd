@@ -108,6 +108,11 @@ func Goal(ballPosition, direction):
 	nextBall.position=Vector2(576,324)
 	nextBall.PGP=ballPGP
 	nextBall.BGP=ballBGP
+	nextBall.ball_ray_cast = nextBall.GetRayCast("BallRayCast")
+	nextBall.down_ray_cast = nextBall.GetRayCast("DownRayCast")
+	nextBall.up_ray_cast = nextBall.GetRayCast("UpRayCast")
+	nextBall.left_ray_cast = nextBall.GetRayCast("LeftRayCast")
+	nextBall.right_ray_cast = nextBall.GetRayCast("RightRayCast")
 	ball=nextBall
 	bot.get_node("Calculator").ball=ball
 	get_parent().add_child(nextBall)

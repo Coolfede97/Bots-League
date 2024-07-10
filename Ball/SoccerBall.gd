@@ -2,13 +2,15 @@ extends RigidBody2D
 
 @export var PGP=float() #Player Goal Position  Posición de la pelota que indica que le hicieron un gol al jugador
 @export var BGP=float() #Bot Goal Position
-@onready var ball_ray_cast = $BallRayCast #rayCast To Future Position
-@onready var down_ray_cast = $DownRayCast
-@onready var up_ray_cast = $UpRayCast
-@onready var left_ray_cast = $LeftRayCast
-@onready var right_ray_cast = $RightRayCast
+@onready var ball_ray_cast = GetRayCast("BallRayCast")
+@onready var down_ray_cast = GetRayCast("DownRayCast")
+@onready var up_ray_cast = GetRayCast("UpRayCast")
+@onready var left_ray_cast = GetRayCast("LeftRayCast")
+@onready var right_ray_cast = GetRayCast("RightRayCast")
 @onready var bot=GetBot()
 
+func GetRayCast(name):
+	return get_node(name)
 #Detecta cuando la pelota entra en alguno de los dos arcos. 
 #Cuando lo hace, llama a una función de GoalManager pasandole la posición de la pelota como argumento.
 #También pasa la dirección a la que debe apuntar la explosión de particulas
