@@ -2,6 +2,7 @@ extends Node2D
 
 var bot2 = ResourceLoader.load("res://Bots/2/bot2.tscn")
 var bots = [bot2]
+var ball: RigidBody2D
 @export var ballExplosion: PackedScene
 @export var ballInstance: PackedScene
 @export var bot2Instance: PackedScene
@@ -16,6 +17,10 @@ var botIsInIP=bool() # Bot Is In Initial Position
 @export var ready_go: Label
 @export var PlayerScore: Label
 @export var BotScore: Label
+
+func _physics_process(delta):
+	if (get_parent().get_node("Ball")!=null):
+		bot.ball=get_parent().get_node("Ball")
 
 func _ready():
 	print(bots[0])
@@ -99,12 +104,15 @@ func Goal(ballPosition, direction):
 		playerWins()
 	await get_tree().create_timer(0.5).timeout
 	# Instancia una nueva pelota
-	var ball=ballInstance.instantiate()
-	ball.position=Vector2(576,324)
-	ball.PGP=ballPGP
-	ball.BGP=ballBGP
-	get_parent().add_child(ball)
-	bot.ball=get_parent().get_node("Ball")
+	var nextBall=ballInstance.instantiate()
+	nextBall.position=Vector2(576,324)
+	nextBall.PGP=ballPGP
+	nextBall.BGP=ballBGP
+	ball=nextBall
+	bot.get_node("Calculator").ball=ball
+	get_parent().add_child(nextBall)
+	bot.ball=ball
+	ball.GetBot()
 	
 	# Resetea el turbo de los jugadores
 	while not bot.turboRemaining>=0.5 or not PlayerReference.turboRemaining>=0.5:
