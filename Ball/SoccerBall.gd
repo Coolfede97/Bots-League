@@ -11,6 +11,7 @@ extends RigidBody2D
 
 func GetRayCast(name):
 	return get_node(name)
+	
 #Detecta cuando la pelota entra en alguno de los dos arcos. 
 #Cuando lo hace, llama a una función de GoalManager pasandole la posición de la pelota como argumento.
 #También pasa la dirección a la que debe apuntar la explosión de particulas

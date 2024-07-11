@@ -123,12 +123,14 @@ func hitBall(delta):
 			ballFP=ball.position+(ball.linear_velocity*time)
 			ball.ball_ray_cast.target_position=ballFP-ball.position
 			await get_tree().create_timer(0.0000001).timeout
-			if ball.ball_ray_cast.is_colliding():
+			if ball!=null and ball.ball_ray_cast.is_colliding():
 				if ball.ball_ray_cast.get_collider().is_in_group("Player"):
 					calculator.kick=false
 					break
 				elif ball.ball_ray_cast.get_collider().get_parent().name=="WallContainer":
 					ballFP=FuturePositionBounce()
+			if ball==null:
+				break
 					
 			# Down Corner To Ball Future Position Vector
 			var DCTBFPV=ballFP-downCorner.position

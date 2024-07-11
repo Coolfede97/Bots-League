@@ -61,7 +61,7 @@ func _physics_process(delta):
 			resetScript()
 	else:
 		cronometer=0	
-	if functionCallable and !kick and bot.isOfensive==true and !destrabando and ball!=null:
+	if functionCallable and !kick and bot.isOfensive==true and !destrabando and ball!=null and bot.move==true:
 		notAbleToKick(delta)
 	print("looking for turbo: ", lookingForturbo)
 func notAbleToKick(delta):
@@ -80,6 +80,8 @@ func notAbleToKick(delta):
 		else:
 			whichTurbo=turboVector[1]
 		while bot.turboRemaining!=0.5 and !touchTurbo:
+			if !bot.move:
+				break
 			if bot.turboRemaining>0 and !touchTurbo:
 				bot.apply_central_force(hypotenuseNormalized(whichTurbo-bot.position)*turboSpeed*delta)
 				bot.turboRemaining-=delta/4.5
