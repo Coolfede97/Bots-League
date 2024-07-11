@@ -1,7 +1,7 @@
 extends Node2D
 
 var bot2 = ResourceLoader.load("res://Bots/2/bot2.tscn")
-var bots = [bot2]
+var bots = [bot2, bot2]
 var ball: RigidBody2D
 @export var ballExplosion: PackedScene
 @export var ballInstance: PackedScene
@@ -159,18 +159,19 @@ func Goal(ballPosition, direction):
 
 func playerWins():
 	if !bots[0]==null:
-		var nextBot = bots[0].instantiate()
-		nextBot.position=bot.position
-		nextBot.upCorner=get_parent().get_node("GoalsContainer").get_node("UpCorner")
-		nextBot.downCorner=get_parent().get_node("GoalsContainer").get_node("DownCorner")
-		nextBot.move=false
-		var explosion=bot2Instance.instantiate()
-		explosion.position=bot.position
-		add_child(explosion)
-		bot.queue_free()
-		bot=nextBot
-		get_parent().add_child(nextBot)
-		bots.remove_at(0)
+		for bot in bots:
+			var nextBot = bots[0].instantiate()
+			nextBot.position=bot.position
+			nextBot.upCorner=get_parent().get_node("GoalsContainer").get_node("UpCorner")
+			nextBot.downCorner=get_parent().get_node("GoalsContainer").get_node("DownCorner")
+			nextBot.move=false
+			var explosion=bot2Instance.instantiate()
+			explosion.position=bot.position
+			add_child(explosion)
+			bot.queue_free()
+			bot=nextBot
+			get_parent().add_child(nextBot)
+			bots.remove_at(0)
 
 
 func botWins():
