@@ -4,6 +4,7 @@ var functionCallable=true
 var functionCallable2=true
 @export var isOfensive=bool()
 var cronometer: float
+var isDefending: bool
 # Radius of the bot's collision = 24.69
 # Radius of the ball's collision = 17.06
 var AOPPSWS=111.06275 # Amount Of Pixels Per Second Walk Speed - En un segundo avanza 111.06275
@@ -33,6 +34,7 @@ var ballFP=Vector2(0,0) # Ball Future Position
 	1.6, 1.7, 1.8, 1.9, 2.0]
 @export var goalCenterVector=Vector2()
 @export var halfPitch=float()
+@onready var goalManager = get_parent().get_node("GoalManager")
 var move=true
 
 #Obtiene la magnitud de un vector dado
@@ -104,8 +106,10 @@ func _physics_process(delta):
 	elif functionCallable2==true and !isOfensive and ball!=null and move==true:
 		defenseGoal(delta)
 	elif !isOfensive and !move:
-		if GetMagnitude(goalCenterVector-position)>10:
-			apply_central_force(hypotenuseNormalized(goalCenterVector-position)*walkSpeed*delta)
+		print("11111")
+		if GetMagnitude(goalManager.defensiveInitialPosition-position)>10:
+			print("22222222")
+			apply_central_force(hypotenuseNormalized(goalManager.defensiveInitialPosition-position)*walkSpeed*delta)
 #	if move==true:
 #		if get_parent().get_node("Ball")!=null:
 #			BTBV=ball.global_position-global_position
@@ -197,6 +201,15 @@ func hitBall(delta):
 func defenseGoal(delta):
 	functionCallable2=false
 	if ball!=null and GetMagnitude(ball.position-goalCenterVector)<300:
+		if ball!=null and position.distance_to(ball.position)<115 and move==true:
+			cronometer+=get_process_delta_time()
+			if cronometer>4:
+				cronometer=0
+				var direction=hypotenuseNormalized(position-ball.position)
+				while GetMagnitude(position-ball.position)<120:
+					apply_central_force(direction*walkSpeed*delta)
+					await get_tree().create_timer(0.0000001).timeout
+		
 		if turboRemaining>0:
 			apply_central_force(hypotenuseNormalized(ball.position-position)*turboSpeed*delta)
 			turboRemaining-=get_process_delta_time()/4.5

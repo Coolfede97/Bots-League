@@ -67,6 +67,8 @@ func Goal(ballPosition, direction):
 	get_parent().get_node("Ball").queue_free()
 	await get_tree().create_timer(1).timeout
 	# Impide que los jugadores se muevan
+	if defensiveBot2!=null:
+		defensiveBot2.move=false
 	PlayerReference.move=false
 	bot.move=false
 	await get_tree().create_timer(1).timeout

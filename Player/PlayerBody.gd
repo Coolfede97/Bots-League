@@ -24,7 +24,7 @@ func get_direction(delta):
 #		print(cronometer)
 #		boolean=true
 	#Se consulta si el click derecho está siendo apretado y si aún queda turbo para usarlo
-	if Input.is_action_pressed("right_click"):
+	if Input.is_action_pressed("right_click") and turboRemaining>=0:
 		
 		# I:1
 		#Multiplica velocity por la velocidad del turbo y se resta el turbo restante
