@@ -1,6 +1,7 @@
 extends Node2D
 
 var bot2 = ResourceLoader.load("res://Bots/2/bot2.tscn")
+var defensiveBot2: RigidBody2D
 var bots = [bot2, bot2]
 var ball: RigidBody2D
 @export var ballExplosion: PackedScene
@@ -8,6 +9,7 @@ var ball: RigidBody2D
 @export var bot2Instance: PackedScene
 @export var playerIPosition=Vector2() #Player Initial Position
 @export var botIPosition=Vector2() # Bot Initial Position
+@export var defensiveInitialPosition=Vector2()
 @export var resetSpeed=float()
 @export var PlayerReference: RigidBody2D
 @export var botName=String()
@@ -23,7 +25,6 @@ func _physics_process(delta):
 		bot.ball=get_parent().get_node("Ball")
 
 func _ready():
-	print(bots[0])
 	PlayerReference.move=false
 	bot.move=false
 	await get_tree().create_timer(0.5).timeout
@@ -119,6 +120,8 @@ func Goal(ballPosition, direction):
 		bot.get_node("Calculator").ball=ball
 	get_parent().add_child(nextBall)
 	bot.ball=ball
+	if bot.name!="Bot1":
+		defensiveBot2.ball=ball
 	ball.GetBot()
 	
 	# Resetea el turbo de los jugadores
@@ -128,6 +131,12 @@ func Goal(ballPosition, direction):
 			bot.get_node("TurboBar").ChangeValue(bot.turboRemaining)
 		else:
 			bot.turboRemaining=0.5
+		if defensiveBot2!=null:
+			if defensiveBot2.turboRemaining<0.5:
+				defensiveBot2.turboRemaining = lerp(bot.turboRemaining,1.0,0.01)
+				defensiveBot2.get_node("TurboBar").ChangeValue(bot.turboRemaining)
+			else:
+				defensiveBot2.turboRemaining=0.5
 		if PlayerReference.turboRemaining<0.5:
 			PlayerReference.turboRemaining = lerp(PlayerReference.turboRemaining,1.0,0.01)
 			PlayerReference.get_node("TurboBar").ChangeValue(PlayerReference.turboRemaining)
@@ -147,6 +156,8 @@ func Goal(ballPosition, direction):
 	ready_go.modulate.a=0
 	await get_tree().create_timer(0.2).timeout
 	ready_go.text="¡GO!"
+	if defensiveBot2!=null:
+		defensiveBot2.move=true
 	PlayerReference.move=true
 	bot.move=true
 	while ready_go.modulate.a<0.8:
@@ -158,22 +169,33 @@ func Goal(ballPosition, direction):
 	ready_go.modulate.a=0 
 
 func playerWins():
-	if !bots[0]==null:
-		for bot in bots:
-			var nextBot = bots[0].instantiate()
-			nextBot.position=bot.position
-			nextBot.upCorner=get_parent().get_node("GoalsContainer").get_node("UpCorner")
-			nextBot.downCorner=get_parent().get_node("GoalsContainer").get_node("DownCorner")
-			nextBot.move=false
-			var explosion=bot2Instance.instantiate()
-			explosion.position=bot.position
-			add_child(explosion)
-			bot.queue_free()
-			bot=nextBot
-			get_parent().add_child(nextBot)
-			bots.remove_at(0)
-
-
+	if !bots.size()==0:
+		while bots.size()>0:
+			if bots.size()==2:
+				var nextBot = bots[0].instantiate()
+				nextBot.position=bot.position
+				nextBot.upCorner=get_parent().get_node("GoalsContainer").get_node("UpCorner")
+				nextBot.downCorner=get_parent().get_node("GoalsContainer").get_node("DownCorner")
+				nextBot.move=false
+				var explosion=bot2Instance.instantiate()
+				explosion.position=bot.position
+				add_child(explosion)
+				bot.queue_free()
+				bot=nextBot
+				get_parent().add_child(nextBot)
+				bots.remove_at(0)
+			else:
+				print("ASDSA")
+				var nextBot = bots[0].instantiate()
+				nextBot.isOfensive=false
+				nextBot.position=defensiveInitialPosition
+				nextBot.move=false
+				defensiveBot2=nextBot
+				var explosion=bot2Instance.instantiate()
+				explosion.position=defensiveInitialPosition
+				add_child(explosion)
+				get_parent().add_child(nextBot)
+				bots.remove_at(0)
 func botWins():
 	print("GANEEE")
 

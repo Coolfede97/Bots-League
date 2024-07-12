@@ -25,6 +25,7 @@ MDTT = 700
 mDTT = 400
 MDTHT = 400
 DTBBS = 152.813
+goalCenterVector = Vector2(962, 324)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p5t6u")

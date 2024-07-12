@@ -278,7 +278,7 @@ position = Vector2(955, 574)
 position = Vector2(190, 574)
 
 [node name="Bot1" parent="." node_paths=PackedStringArray("ball") groups=["Players"] instance=ExtResource("7_t6vrg")]
-position = Vector2(1077, 324)
+position = Vector2(1069.09, 324)
 MDTT = 500
 ball = NodePath("../Ball")
 
@@ -309,6 +309,7 @@ ballInstance = ExtResource("4_66fie")
 bot2Instance = ExtResource("11_2u413")
 playerIPosition = Vector2(75, 324)
 botIPosition = Vector2(1077, 324)
+defensiveInitialPosition = Vector2(962, 324)
 resetSpeed = 200000.0
 PlayerReference = NodePath("../PlayerBody")
 botName = "Bot1"

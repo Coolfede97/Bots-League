@@ -63,7 +63,6 @@ func _physics_process(delta):
 		cronometer=0	
 	if functionCallable and !kick and bot.isOfensive==true and !destrabando and ball!=null and bot.move==true:
 		notAbleToKick(delta)
-	print("looking for turbo: ", lookingForturbo)
 func notAbleToKick(delta):
 	functionCallable=false
 	if bot.position.x-ball.position.x>0 and kick==false:

@@ -101,8 +101,11 @@ func _physics_process(delta):
 	if functionCallable==true and isOfensive and calculator.lookingForturbo==false and ball!=null:
 		hitBall(delta)
 		functionCallable=false
-	elif functionCallable2==true and !isOfensive and ball!=null:
+	elif functionCallable2==true and !isOfensive and ball!=null and move==true:
 		defenseGoal(delta)
+	elif !isOfensive and !move:
+		if GetMagnitude(goalCenterVector-position)>10:
+			apply_central_force(hypotenuseNormalized(goalCenterVector-position)*walkSpeed*delta)
 #	if move==true:
 #		if get_parent().get_node("Ball")!=null:
 #			BTBV=ball.global_position-global_position
